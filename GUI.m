@@ -88,12 +88,12 @@ function MenuItemOpen_Callback(hObject, eventdata, handles)
 file = uigetfile({'*.tif';'*.jpg';'*.png';'*.bmp';'*.*'});
 if ~isequal(file, 0)
     Img = imread(file);
-    imshow(Img, 'Parent', handles.axes1);
-    BW = roipoly(Img);
-    roi = ['roi', '_', strrep(datestr(now,'HH:MM:SS'), ':', '_')];
-    file = [file(1:end-4), '_', strrep(datestr(now,'HH:MM:SS'), ':', '_')];
-    assignin('base', file, Img);
-    assignin('base', roi, BW);
+    imshow(Img, 'Parent', gca);
+    %BW = roipoly(Img);
+    %roi = ['roi', '_', strrep(datestr(now,'HH:MM:SS'), ':', '_')];
+    %file = [file(1:end-4), '_', strrep(datestr(now,'HH:MM:SS'), ':', '_')];
+    %assignin('base', file, Img);
+    %assignin('base', roi, BW);
 end
 
 % --------------------------------------------------------------------
