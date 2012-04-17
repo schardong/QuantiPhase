@@ -22,7 +22,7 @@ function varargout = GUI(varargin)
 
 % Edit the above text to modify the response to help GUI
 
-% Last Modified by GUIDE v2.5 13-Apr-2012 17:12:55
+% Last Modified by GUIDE v2.5 17-Apr-2012 16:30:03
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -89,7 +89,6 @@ file = uigetfile({'*.tif';'*.jpg';'*.png';'*.bmp';'*.*'});
 if ~isequal(file, 0)
     Img = imread(file);
     imshow(Img, 'Parent', gca);
-    %BW = roipoly(Img);
     %roi = ['roi', '_', strrep(datestr(now,'HH:MM:SS'), ':', '_')];
     %file = [file(1:end-4), '_', strrep(datestr(now,'HH:MM:SS'), ':', '_')];
     %assignin('base', file, Img);
@@ -101,6 +100,8 @@ function MenuItemSave_Callback(hObject, eventdata, handles)
 % hObject    handle to MenuItemSave (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+A = getimage(imhandles(gca));
+imtool(A);
 
 
 % --- Executes on mouse press over axes background.
@@ -108,3 +109,19 @@ function axes1_ButtonDownFcn(hObject, eventdata, handles)
 % hObject    handle to axes1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function MenuItemExit_Callback(hObject, eventdata, handles)
+% hObject    handle to MenuItemExit (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function MenuItemNewROI_Callback(hObject, eventdata, handles)
+% hObject    handle to MenuItemNewROI (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+Img = getimage(imhandles(gca));
+BW = roipoly(Img);
