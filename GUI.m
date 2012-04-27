@@ -125,4 +125,5 @@ function MenuItemNewROI_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 Img = getimage(imhandles(gca));
 BW = roipoly(Img);
-imtool(BW);
+filename = ['ROI', '_', strrep(datestr(now, 'HH:MM:SS'), ':', '_'), '.tif'];
+imwrite(BW, filename, 'tif');
